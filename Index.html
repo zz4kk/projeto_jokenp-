@@ -1,0 +1,145 @@
+<html> 
+    <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>JOKENPÔ</title>
+    <background><img src="jokenpo.png" width="100%"></background>
+
+        <style>
+        body {
+            margin: 0;
+            height: 100vh; 
+            background: url('jokenpo.png') no-repeat center center fixed; 
+            background-size: cover; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .h3 {
+            width: 500px; 
+            height: 80px; 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            background-color: rgba(0, 0, 0, 0.7); 
+            color: white; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .buttons {
+            display: flex; 
+            gap: 1px; 
+}
+
+        .btn img {
+            width: 100px; 
+            height: auto; 
+        }
+    </style>
+
+    <script> 
+
+    $(document).ready (function () {
+      var Rodada = 0;
+      var Jogador1 = 0;
+      var Jogador2 = 0;
+      
+      $(".pedra").click(function(){
+      if (Rodada == 0) {
+         Jogador1 = 1;
+      }
+      else {
+        Jogador2 = 1;
+      }
+      
+    });
+    $(".papel").click(function(){
+      if (Rodada == 0) {
+         Jogador1 = 2;
+      }
+      else {
+        Jogador2 = 2;
+      }
+      
+    });
+    $(".tesoura").click(function(){
+      if (Rodada == 0) {
+         Jogador1 = 3;
+      }
+      else {
+        Jogador2 = 3;
+      }
+      
+    });
+    $("a").click(function(){
+      if (Rodada == 0) {
+        $("h3").text("");
+        $(".mensagem").text("Vez de Jogador 2");
+         Rodada += 1;
+      }
+      else if (Rodada == 1) {
+        Rodada += 1;
+        if (Jogador1 > Jogador2) {
+          $("h3").html("<meta http-equiv=refresh content=3,url=Vencedor1.html>");
+          $(".mensagem").text("Aguarde...");
+          if (Jogador1 == 3) {
+            if (Jogador2 == 1){
+              $("h3").html("<meta http-equiv=refresh content=3,url=Vencedor2.html>");
+              $(".mensagem").text("Aguarde...");
+            }
+          }
+      }
+      if (Jogador2 == Jogador1) {
+            $("h3").html("<meta http-equiv=refresh content=3,url=Empate.html>");
+            $(".mensagem").text("Aguarde...");
+          }
+      if (Jogador2 > Jogador1) {
+        $("h3").html("<meta http-equiv=refresh content=3,url=Vencedor2.html>");
+        $(".mensagem").text("Aguarde...");
+          if (Jogador1 == 1) {
+            if (Jogador2 == 3){
+              $("h3").html("<meta http-equiv=refresh content=3,url=Vencedor1.html>");
+            }
+          }
+        }
+      }
+      else {
+        $("h3").html("<meta http-equiv=refresh content=3,url=Vencedor2.html>");
+        Rodada -= 2;
+      }
+    });
+    });
+    </script>
+    </head>
+    <body>
+
+      <div class="h3">
+        <p class="mensagem"> Vez de Jogador 1 </p><h3></h3>
+      </div>
+        
+      <div class="container">
+        <div class="buttons">
+          <div class="btn">
+            <a class="pedra"><img src="Assets/Pedra.png"></a>
+          </div>
+          <div class="btn">
+            <a class="papel"><img src="Assets/Papel.png"></a>
+          </div>
+          <div class="btn">
+            <a class="tesoura"><img src="Assets/Tesoura.png"></a>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+</body>
+</html>
